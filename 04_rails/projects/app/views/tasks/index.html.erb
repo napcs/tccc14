@@ -1,0 +1,30 @@
+<h1><%=@project.name %> : Tasks</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Status</th>
+    <th>Priority</th>
+    <th>Difficulty</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><%= link_to task.name, @task %></td>
+    <td><%= task.status_as_string %></td>
+    <td><%= task.priority %></td>
+    <td><%= task.difficulty %></td>
+    <td><%= link_to 'Edit', edit_project_task_path(@project, task) %></td>
+    <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<p>
+  <%= link_to 'New Task', new_project_task_path(@project), {:class => "button" } %>
+</p>
+<p><%= link_to "Back to projects", projects_path %></p>
